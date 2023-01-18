@@ -8,24 +8,42 @@
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
-
-      <form action="../../index.html" method="post">
+      <form action="{{ route('store.register') }}" method="post">
+        @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Full name" name="name" value="{{ old('name') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+         @error('name')
+          <small class="text-muted"><p class="text-danger">{{ $message }}</p></small>
+          @enderror
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}">
+           
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-solid fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+         @error('email')
+          <small class="text-muted"><p class="text-danger">{{ $message }}</p></small>
+          @enderror
+        <div class="input-group mb-3">
+          <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" value="{{ old('name') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+         @error('password')
+          <small class="text-muted"><p class="text-danger">{{ $message }}</p></small>
+          @enderror
         <div class="row d-flex justify-content-center">
           <!-- /.col -->
           <div class="col-4">
@@ -35,7 +53,7 @@
         </div>
       </form>
 
-      <a href="login.html" class="text-center d-flex justify-content-center">I already have a membership</a>
+      <a href="{{ route('login') }}" class="text-center d-flex justify-content-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

@@ -8,7 +8,16 @@
     </ul>
     <ul class="navbar-nav ml-auto"> 
         <li class="nav-item">
-        <a class="nav-link">Logout  <i class="fas fa-sign-out-alt"></i></a>
+           @auth   
+              <form action="{{ route('logout') }}" method="POST" class="dropdown-item">
+                                @csrf
+                    <button type="submit" class="btn btn-tranparent btn-sm">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                    </button>
+              </form>  
+                      
+          @endauth
       </li></ul>
   </nav>
   <!-- /.navbar -->
